@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+<!--        <record model="res.config.settings" id="res_config_settings">-->
+<!--            <field name="group_product_variant" eval="1"/>-->
+<!--        </record>-->
+<!--        <function model="res.config.settings" name="execute">-->
+<!--            <value eval="[ref('res_config_settings')]"/>-->
+<!--            <value eval="{}"/>-->
+<!--        </function>-->
+
+
+
+        <!-- default patient tree view -->
+        <record id="patient_xyz" model="hospital.patient">
+            <field name="patient_name">xyz</field>
+            <field name="patient_age">55</field>
+            <field name="name">123456789</field>
+            <field name="gender">female</field>
+            <field name="notes">Happy sad</field>
+        </record>
+
+    </data>
+
+    <data noupdate="1">
+
+        <!-- default patient tree view -->
+        <record id="appointment_patient_xyz" model="hospital.appointment">
+            <field name="patient_id" ref="patient_xyz"/>
+            <field name="notes">ABC</field>
+        </record>
+
+    </data>
+</odoo>

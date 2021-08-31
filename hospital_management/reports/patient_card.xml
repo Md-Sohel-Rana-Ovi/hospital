@@ -1,0 +1,111 @@
+<odoo>
+  <data>
+
+     <template id="report_patient">
+         <t t-call="web.html_container">
+             <t t-call="web.basic_layout">
+                 <t t-foreach="docs" t-as="o">
+                     <div class="row">
+                        <div class="col-xs-12 col-md-12 col-12 text-center">
+                            <img clas="img-fluid" style="max-width: 420px;"
+                            t-if="o.company_id.logo"
+                            t-att-src="image_data_uri(o.company_id.logo)"
+                            t-att-alt="o.company_id.name"/>
+<!--                            <h6 style="margin-top: 10px;">Daffodil Smart City, Ashulia, Dhaka, Bangladesh.</h6>-->
+                            <hr/>
+                        </div>
+                    </div>
+
+                     <div class="page">
+                         <br></br>
+                         <br></br>
+                         <div class="oe_structure"/>
+                         <div class="row" style="justify-content: center">
+                             <!-- <div class="col-xs-2" style="margin:auto"> -->
+                             <!-- </div> -->
+                             <center>
+<!--                                 bercode-->
+<!--                                 <table class="table table-bordered mb-0" style="border: 0px solid black;">-->
+<!--                                    <tr>-->
+<!--                                        <td class="text-center align-middle" style="height: 3rem">-->
+<!--                                            <img alt="Barcode" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', o.name_seq, 600, 150)" style="width:50%;height::2rem;"/>-->
+<!--                                        </td>-->
+<!--                                        <span t-field=" o.name_seq"/>-->
+<!--                                    </tr>-->
+<!--                                </table>-->
+                                 <div class="col-xs-8" style="margin:auto">
+                                     <table class="table table-condensed" style="border:3px solid black !important;">
+                                         <tr>
+                                             <td width="60%">
+                                                 <p style="text-align: center; padding-top:10px;">
+                                                     <img t-if="not o.images" t-att-src="'/web/static/src/img/image.png'" height="120" border="1" width="120" />
+                                                     <img t-if="o.images" t-att-src="'data:image/png;base64,%s' % to_text(o.images)" height="120" border="1" width="120"/>
+
+                                                 </p>
+                                                 <p style="text-align: center;">
+                                                     <h2><strong><span t-field="o.patient_name"/></strong></h2>
+                                                 </p>
+                                             </td>
+                                             <td width="60%">
+                                                 <table>
+                                                     <tr>
+                                                         <td>
+                                                             <p style="text-align: right;"><strong>Age:</strong></p>
+                                                             <p style="text-align: right;"><strong>Group:</strong></p>
+                                                             <p style="text-align: right;"><strong>Phone No:</strong></p>
+                                                         </td>
+                                                         <td>
+                                                             <p style="text-align:left; padding-left:10px;" t-field="o.patient_age"/>
+                                                             <p style="text-align:left; padding-left:10px;" t-field="o.age_group"/>
+                                                             <p style="text-align:left; padding-left:10px;" t-field="o.name"/>
+                                                         </td>
+                                                     </tr>
+                                                 </table>
+
+                                             </td>
+                                         </tr>
+
+                                     </table>
+                                     <table class="table table-condensed" style="border:3px solid black !important;">
+                                          <t t-foreach="appointment_list" t-as="app">
+                                              <tr>
+                                                  <td>
+                                                      <t t-esc="app['name']"/>
+                                                  </td>
+                                                  <td>
+                                                      <t t-esc="app['notes']"/>
+                                                  </td>
+                                                  <td>
+                                                      <t t-esc="app['appointment_date']"/>
+                                                  </td>
+                                              </tr>
+                                          </t>
+                                      </table>
+
+                                 </div>
+                             </center>
+
+                         </div>
+                     </div>
+                 </t>
+             </t>
+
+         </t>
+
+     </template>
+
+<!--     <template id="report_patient_document">-->
+<!--        <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)" />-->
+<!--        <t t-call="web.external_layout">-->
+<!--            <div class="page">-->
+<!--                <div class="oe_structure"/>-->
+<!--                <div class="row">-->
+
+<!--                </div>-->
+
+<!--            </div>-->
+<!--        </t>-->
+<!--   </template>-->
+
+    </data>
+</odoo>

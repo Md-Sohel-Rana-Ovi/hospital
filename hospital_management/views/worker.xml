@@ -1,0 +1,104 @@
+<odoo>
+  <data>
+    <!-- form tree view of the worker model -->
+      <record id="worker_tree" model="ir.ui.view">
+            <field name="name">hospital.worker.tree</field>
+            <field name="model">hospital.worker</field>
+            <field name="arch" type="xml">
+              <tree string="worker">
+                  <field name="worker_name"/>
+                  <field name="worker_seq"/>
+                  <field name="worker_age"/>
+                  <field name="gender"/>
+                  <field name="worker_address"/>
+                  <field name="phone"/>
+              </tree>
+
+            </field>
+      </record>
+
+
+
+  <!-- form view of the worker model -->
+     <record id="worker_form" model="ir.ui.view">
+            <field name="name">hospital.worker.form</field>
+            <field name="model">hospital.worker</field>
+            <field name="arch" type="xml">
+                <form string="worker">
+                  <sheet>
+                       <field name="images" widget="image" height="80" class="oe_avater"/>
+                       <div class="oe_title">
+                          <h1>
+                              <field name="worker_name"/>
+                          </h1>
+                      </div>
+                      <group>
+                          <group>
+                               <field name="worker_seq" readonly="1"/>
+                               <field name="worker_age"/>
+
+                          </group>
+                          <group>
+                               <field name="gender"/>
+
+                          </group>
+                      </group>
+                      <group>
+                          <field name="worker_address"/>
+                          <field name="phone"/>
+                      </group>
+                  </sheet>
+                    <div class="oe_chatter">
+                      <field name="message_follower_ids" widget="mail_followers"/>
+                      <field name="activity_ids" widget="mail_activity"/>
+                      <field name="message_ids" widget="mail_thread" options="{'post_refresh':'recipients'}"/>
+                    </div>
+               </form>
+            </field>
+        </record>
+
+
+
+<!--       search worker models-->
+      <record id="hospital_worker_search" model="ir.ui.view">
+            <field name="name">hospital.worker.search</field>
+            <field name="model">hospital.worker</field>
+            <field name="arch" type="xml">
+              <search string="search workers">
+                  <field name="worker_name" filter_domain="['|',('worker_name','ilike',self),('worker_seq','ilike',self) ]"/>
+                  <field name="worker_seq"/>
+                  <field name="worker_name"/>
+                  <separator/>
+                  <filter string="Male" name="male" domain="[('gender','=','male')]"/>
+                  <filter string="Female" name="female" domain="[('gender','=','female')]"/>
+                  <group expand="0" string="Group By">
+                      <filter string="Gender" name="gender" context="{'group_by' : 'gender'}"/>
+                  </group>
+
+              </search>
+
+            </field>
+      </record>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="action_worker">
+      <field name="name">worker</field>
+      <field name="res_model">hospital.worker</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="o_view_worker">
+          Create your first worker
+
+        </p>
+
+      </field>
+    </record>
+
+    <!-- Top menu item -->
+    <menuitem name="Hospital" id="hospital_root" sequence="0"/>
+     <menuitem name="Worker" id="hospital_worker" parent="hospital_root" action="action_worker"/>
+
+
+  </data>
+</odoo>

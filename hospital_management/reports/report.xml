@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- QWeb Reports -->
+        <report
+            id="report_patient_card"
+            string="Patient Card"
+            model="hospital.patient"
+           report_type="qweb-pdf"
+            name="hospital_management.report_patient"
+            file="hospital_management.report_patient"
+        />
+
+         <report
+            id="report_patient_card_xlx"
+            string="Patient Card Excel"
+            model="hospital.patient"
+            report_type="xlsx"
+            name="hospital_management.report_patient_xls"
+            file="hospital_management.report_patient_xls"
+        />
+
+    </data>
+</odoo>
